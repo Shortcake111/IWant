@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">I Want</string>
+    <string name="name">Name</string>
+    <string name="created">Created</string>
+    <string name="edited">Edited</string>
+</resources>
