@@ -1,7 +1,11 @@
 package kdg.be.iwant
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import kdg.be.iwant.model.Wishlist
 import java.util.*
 
@@ -14,11 +18,11 @@ fun getWishlists(): ArrayList<Wishlist> {
     wishlists.add(
         Wishlist(
             1,
-            "pc-accesories",
+            "PC-accesories",
             calCreation.time,
             calEdited.time,
             2,
-            "pc.png"
+            "pc"
         )
     )
     calCreation.set(2018, 7, 4)
@@ -30,7 +34,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             3,
-            "look.png"
+            "look"
         )
     )
     calCreation.set(2018, 3, 19)
@@ -42,7 +46,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             1,
-            "controller.png"
+            "controller"
         )
     )
     calCreation.set(2018, 9, 10)
@@ -54,7 +58,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             4,
-            "groceries.png"
+            "groceries"
         )
     )
     calCreation.set(2018, 10, 10)
@@ -66,7 +70,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             5,
-            "heart.png"
+            "heart"
         )
     )
     calCreation.set(2018, 2, 20)
@@ -78,7 +82,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             6,
-            "movie.png"
+            "movie"
         )
     )
     calCreation.set(2018,1,28)
@@ -90,7 +94,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             7,
-            "wrench.png"
+            "wrench"
         )
     )
     calCreation.set(2018,4,21)
@@ -102,7 +106,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             8,
-            "gear.png"
+            "gear"
         )
     )
     calCreation.set(2018,2,1)
@@ -114,7 +118,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             9,
-            "euro.png"
+            "euro"
         )
     )
     calCreation.set(2018,1,2)
@@ -126,7 +130,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             10,
-            "test.png"
+            "test"
         )
     )
     calCreation.set(2018,4,10)
@@ -138,7 +142,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             14,
-            "test.png"
+            "test"
         )
     )
     calCreation.set(2018,5,25)
@@ -150,7 +154,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             12,
-            "test.png"
+            "test"
         )
     )
     calCreation.set(2018,7,9)
@@ -162,7 +166,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             11,
-            "test.png"
+            "test"
         )
     )
     calCreation.set(2018,10,27)
@@ -174,7 +178,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             15,
-            "test.png"
+            "test"
         )
     )
     calCreation.set(2018,12,28)
@@ -186,16 +190,89 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             13,
-            "test.png"
+            "test"
         )
     )
     return wishlists
 }
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var icon:ImageView
+    private lateinit var name:TextView
+    private lateinit var created:TextView
+    private lateinit var edited:TextView
+    private lateinit var id:TextView
+    private lateinit var previous:ImageButton
+    private lateinit var next:ImageButton
+    private var currentRecord:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        initialiseViews()
+        addEventHandlers()
+        currentRecord = 0
+        fillFields(currentRecord)
+    }
+
+    private fun initialiseViews(){
+        icon = findViewById(R.id.iconImageView)
+        name = findViewById(R.id.nameTextView)
+        created = findViewById(R.id.createdTextView)
+        edited = findViewById(R.id.editedTextView)
+        id = findViewById(R.id.idTextView)
+        previous = findViewById(R.id.previousImageButton)
+        next = findViewById(R.id.nextImageButton)
+        currentRecord = 0
+    }
+
+    private fun addEventHandlers(){
+        previous.setOnClickListener {
+            if (currentRecord > 0) {
+                fillFields(--currentRecord)
+            } else {
+                currentRecord = getWishlists().size-1
+                fillFields(currentRecord)
+            }
+        }
+
+        next.setOnClickListener {
+            if (currentRecord < getWishlists().size-1) {
+                fillFields(++currentRecord)
+            } else {
+                currentRecord = 0
+                fillFields(currentRecord)
+            }
+        }
+
+        icon.setOnClickListener{
+            var imageIntent:Intent = Intent(this, ImageActivity::class.java)
+            imageIntent.putExtra("icon", resources.getIdentifier("@drawable/"+getWishlists()[currentRecord].icon, null, packageName))
+            startActivity(imageIntent)
+        }
+    }
+
+    private fun fillFields(nr:Int){
+        if (!getWishlists().isEmpty()) {
+            icon.setImageDrawable(resources.getDrawable(resources.getIdentifier("@drawable/"+getWishlists()[nr].icon, null, packageName)))
+            name.text = getWishlists()[nr].name
+
+            var date:Date = getWishlists()[nr].created
+            created.text = "Created: " + date.month + "-" + date.day
+            if (Calendar.YEAR != date.year) {
+                created.append("-" + date.year)
+            }
+
+            date = getWishlists()[nr].last_edited
+            edited.text = "Edited: " + date.month + "-" + date.day
+            if (Calendar.YEAR != date.year) {
+                edited.append("-" + date.year)
+            }
+
+            id.text = (currentRecord+1).toString()
+        } else{
+            name.text = "No records found"
+        }
     }
 }

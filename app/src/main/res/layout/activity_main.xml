@@ -8,24 +8,26 @@
         tools:context=".MainActivity">
     <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/ic_launcher_background"
+            android:layout_height="0dp"
             android:id="@+id/iconImageView" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/nameTextView"/>
     <TextView
             android:text="@string/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/nameTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" app:layout_constraintBaseline_toBaselineOf="@+id/idTextView"
-            android:layout_marginStart="8dp" app:layout_constraintStart_toEndOf="@+id/idTextView"/>
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp" app:layout_constraintStart_toEndOf="@+id/idTextView"
+            app:layout_constraintBaseline_toBaselineOf="@+id/idTextView"/>
     <TextView
             android:text="@string/created"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/creationTextView" app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/createdTextView" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline" android:layout_marginEnd="4dp"
             app:layout_constraintHorizontal_bias="0.0" android:layout_marginBottom="8dp"
@@ -38,7 +40,7 @@
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintStart_toStartOf="@+id/guideline" android:layout_marginStart="4dp"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintBaseline_toBaselineOf="@+id/creationTextView"/>
+            app:layout_constraintBaseline_toBaselineOf="@+id/createdTextView"/>
     <android.support.constraint.Guideline
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -50,19 +52,20 @@
             android:layout_height="wrap_content" app:srcCompat="@android:drawable/arrow_down_float"
             android:id="@+id/previousImageButton"
             android:rotation="90" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"/>
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            android:contentDescription="@string/previous"/>
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@android:drawable/arrow_down_float"
             android:id="@+id/nextImageButton"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:rotation="270"/>
+            android:rotation="270" android:contentDescription="@string/next"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/idTextView" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/iconImageView"/>
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/createdTextView"/>
 </android.support.constraint.ConstraintLayout>

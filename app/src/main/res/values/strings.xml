@@ -3,4 +3,8 @@
     <string name="name">Naam</string>
     <string name="created">Gemaakt</string>
     <string name="edited">Gewijzigd</string>
+    <string name="next">Volgende</string>
+    <string name="previous">Vorige</string>
+    <string name="id">Nr</string>
+    <string name="ico">Icoon</string>
 </resources>
