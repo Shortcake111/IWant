@@ -3,6 +3,8 @@ package kdg.be.iwant
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -206,6 +208,23 @@ class MainActivity : AppCompatActivity() {
     private lateinit var next:ImageButton
     private var currentRecord:Int = 0
 
+    @Override
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_default, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item!!.itemId){
+            R.id.settingsMenuItem -> {
+                var settingsIntent:Intent = Intent(this, SettingsActivity::class.java)
+                startActivity(settingsIntent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -251,6 +270,8 @@ class MainActivity : AppCompatActivity() {
             imageIntent.putExtra("icon", resources.getIdentifier("@drawable/"+getWishlists()[currentRecord].icon, null, packageName))
             startActivity(imageIntent)
         }
+
+
     }
 
     private fun fillFields(nr:Int){

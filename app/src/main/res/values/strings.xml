@@ -1,10 +1,14 @@
 <resources>
     <string name="app_name">I Want</string>
-    <string name="name">Naam</string>
-    <string name="created">Gemaakt</string>
-    <string name="edited">Gewijzigd</string>
-    <string name="next">Volgende</string>
-    <string name="previous">Vorige</string>
-    <string name="id">Nr</string>
-    <string name="ico">Icoon</string>
+    <string name="name">Name</string>
+    <string name="edited">Edited</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="id">No</string>
+    <string name="ico">Icon</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="created">Created</string>
+    <string name="myName">Lies Van der Haegen</string>
+    <string name="classgroup">INF201A</string>
 </resources>

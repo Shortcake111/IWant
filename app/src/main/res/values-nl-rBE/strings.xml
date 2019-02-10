@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">I Want</string>
+    <string name="name">Naam</string>
+    <string name="created">Gemaakt</string>
+    <string name="edited">Gewijzigd</string>
+    <string name="next">Volgende</string>
+    <string name="previous">Vorige</string>
+    <string name="id">Nr</string>
+    <string name="ico">Icoon</string>
+    <string name="settings">Instellingen</string>
+    <string name="about">Over</string>
+    <string name="myName">Lies Van der Haegen</string>
+    <string name="classgroup">INF201A</string>
+</resources>
