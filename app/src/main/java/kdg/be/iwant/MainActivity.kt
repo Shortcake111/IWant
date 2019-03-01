@@ -1,6 +1,7 @@
 package kdg.be.iwant
 
 import android.content.Intent
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -24,7 +25,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             2,
-            "pc"
+            "pc",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018, 7, 4)
@@ -36,7 +38,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             3,
-            "look"
+            "look",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018, 3, 19)
@@ -48,7 +51,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             1,
-            "controller"
+            "controller",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018, 9, 10)
@@ -60,7 +64,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             4,
-            "groceries"
+            "groceries",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018, 10, 10)
@@ -72,7 +77,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             5,
-            "heart"
+            "heart",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018, 2, 20)
@@ -84,7 +90,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             6,
-            "movie"
+            "movie",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018,1,28)
@@ -96,7 +103,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             7,
-            "wrench"
+            "wrench",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018,4,21)
@@ -108,7 +116,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             8,
-            "gear"
+            "gear",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018,2,1)
@@ -120,7 +129,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             9,
-            "euro"
+            "euro",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018,1,2)
@@ -132,7 +142,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             10,
-            "test"
+            "test",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018,4,10)
@@ -144,7 +155,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             14,
-            "test"
+            "test",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018,5,25)
@@ -156,7 +168,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             12,
-            "test"
+            "test",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018,7,9)
@@ -168,7 +181,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             11,
-            "test"
+            "test",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018,10,27)
@@ -180,7 +194,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             15,
-            "test"
+            "test",
+            Color.rgb(191, 255, 0)
         )
     )
     calCreation.set(2018,12,28)
@@ -192,7 +207,8 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             13,
-            "test"
+            "test",
+            Color.rgb(191, 255, 0)
         )
     )
     return wishlists
