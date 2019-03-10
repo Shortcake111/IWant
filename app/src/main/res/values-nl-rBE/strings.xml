@@ -12,4 +12,5 @@
     <string name="about">Over</string>
     <string name="myName">Lies Van der Haegen</string>
     <string name="classgroup">INF201A</string>
+    <string name="bg">achtergrond afbeelding</string>
 </resources>
