@@ -1,19 +1,18 @@
 package kdg.be.iwant
 
 import android.graphics.Color
+import kdg.be.iwant.model.Product
 import kdg.be.iwant.model.Wishlist
 import java.util.*
 
 fun getWishlists(): ArrayList<Wishlist> {
     val wishlists: ArrayList<Wishlist> = ArrayList()
-    //val calCreation = Calendar.getInstance()
     val pdt = SimpleTimeZone(-8 * 60 * 60 * 1000, TimeZone.getAvailableIDs(-8 * 60 * 60 * 1000)[0])
     pdt.setStartRule(Calendar.APRIL, 1, Calendar.SUNDAY, 2 * 60 * 60 * 1000)
     pdt.setEndRule(Calendar.OCTOBER, -1, Calendar.SUNDAY, 2 * 60 * 60 * 1000)
 
     val calCreation = GregorianCalendar(pdt)
     val calEdited = GregorianCalendar(pdt)
-
 
     setTime(calCreation, 2019, 0, 1)
     setTime(calEdited, 2019, 0, 5)
@@ -26,7 +25,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             "pc",
-            Color.rgb(200,253,195)
+            Color.rgb(200, 253, 195)
         )
     )
 
@@ -41,7 +40,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             "look",
-            Color.rgb(255,251,208)
+            Color.rgb(255, 251, 208)
         )
     )
     setTime(calCreation, 2018, 2, 19)
@@ -55,7 +54,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             "controller",
-            Color.rgb(200,253,195)
+            Color.rgb(200, 253, 195)
         )
     )
     setTime(calCreation, 2018, 8, 10)
@@ -69,7 +68,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             "groceries",
-            Color.rgb(230,178,253)
+            Color.rgb(230, 178, 253)
         )
     )
     setTime(calCreation, 2018, 9, 10)
@@ -83,7 +82,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             "heart",
-            Color.rgb(255,184,184)
+            Color.rgb(255, 184, 184)
         )
     )
     setTime(calCreation, 2018, 1, 20)
@@ -97,7 +96,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             "movie",
-            Color.rgb(255,184,184)
+            Color.rgb(255, 184, 184)
         )
     )
     setTime(calCreation, 2018, 0, 28)
@@ -111,7 +110,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             "wrench",
-            Color.rgb(230,178,253)
+            Color.rgb(230, 178, 253)
         )
     )
     setTime(calCreation, 2018, 3, 21)
@@ -125,7 +124,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             "gear",
-            Color.rgb(230,178,253)
+            Color.rgb(230, 178, 253)
         )
     )
     setTime(calCreation, 2018, 1, 1)
@@ -139,7 +138,7 @@ fun getWishlists(): ArrayList<Wishlist> {
             calCreation.time,
             calEdited.time,
             "euro",
-            Color.rgb(151,242,208)
+            Color.rgb(151, 242, 208)
         )
     )
     setTime(calCreation, 2018, 0, 2)
@@ -229,6 +228,111 @@ fun getWishlists(): ArrayList<Wishlist> {
     return wishlists
 }
 
-private fun setTime(cal:Calendar, year:Int, month:Int, day:Int){
+fun getProducts(): ArrayList<Product> {
+    val products: ArrayList<Product> = ArrayList()
+    products.add(
+        Product(
+            1,
+            "Keyboard",
+            110.00,
+            1,
+            false,
+            1
+        )
+    )
+    products.add(
+        Product(
+            2,
+            "Dresses",
+            20.00,
+            2,
+            false,
+            2
+        )
+    )
+    products.add(
+        Product(
+            3,
+            "Mascara",
+            4.00,
+            1,
+            true,
+            2
+        )
+    )
+    products.add(
+        Product(
+            4,
+            "Overwatch",
+            60.00,
+            1,
+            true,
+            3
+        )
+    )
+    products.add(
+        Product(
+            5,
+            "Atelier Sophie: The Alchemist of the Mysterious Book",
+            29.99,
+            1,
+            false,
+            3
+        )
+    )
+    products.add(
+        Product(
+            6,
+            "Hand of Fate",
+            19.99,
+            1,
+            true,
+            3
+        )
+    )
+    products.add(
+        Product(
+            7,
+            "WC papier",
+            2.00,
+            2,
+            false,
+            8
+        )
+    )
+    products.add(
+        Product(
+            8,
+            "Maandverband",
+            4.79,
+            1,
+            false,
+            8
+        )
+    )
+    products.add(
+        Product(
+            9,
+            "Crunchyroll (monthly)",
+            5.00,
+            1,
+            true,
+            9
+        )
+    )
+    products.add(
+        Product(
+            10,
+            "TestItem1",
+            0.05,
+            10,
+            false,
+            10
+        )
+    )
+    return products
+}
+
+private fun setTime(cal: Calendar, year: Int, month: Int, day: Int) {
     cal.set(year, month, day)
 }
