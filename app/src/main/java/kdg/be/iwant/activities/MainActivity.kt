@@ -1,4 +1,4 @@
-package kdg.be.iwant
+package kdg.be.iwant.activities
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity(){
         }
 
         icon.setOnClickListener{
-            val imageIntent = Intent(this, WishlistActivity::class.java)
+            val imageIntent = Intent(this, WishlistDetailsActivity::class.java)
             imageIntent.putExtra("icon", resources.getIdentifier("@drawable/"+getWishlists()[currentRecord].icon, null, packageName))
             startActivity(imageIntent)
         }
