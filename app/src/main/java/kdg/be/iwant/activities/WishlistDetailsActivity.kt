@@ -1,4 +1,5 @@
 package kdg.be.iwant.activities
+import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.Menu
 import android.widget.TextView
 import kdg.be.iwant.R
 import kdg.be.iwant.adapters.ProductAdapter
+import kdg.be.iwant.fragments.WishlistDetailsFragment
 import kdg.be.iwant.getProducts
 import kdg.be.iwant.getWishlists
 import kdg.be.iwant.model.Product
@@ -23,7 +25,7 @@ class WishlistDetailsActivity : AppCompatActivity() {
     private lateinit var tvName:TextView
     private lateinit var tvTotalPrice:TextView
 
-    private var wishlistIndex:Int = 0
+    private var index:Int = 0
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(kdg.be.iwant.R.menu.menu_default, menu)
@@ -34,8 +36,13 @@ class WishlistDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wishlist_details)
 
+        val intent: Intent = intent
+        val index:Int = intent.getIntExtra("index", 0)
+        val fragment:WishlistDetailsFragment = fragmentManager.findFragmentById(R.id.fWishlistDetails)
+        fragment.index = index
+
         if (savedInstanceState == null) {
-            wishlistIndex = intent?.extras!!.getInt("Index")
+            this.index = intent.extras!!.getInt("Index")
         }
 
         initialiseViews()
@@ -49,7 +56,7 @@ class WishlistDetailsActivity : AppCompatActivity() {
 
 
         for (product: Product in getProducts()){
-            if (product.wishlistId == getWishlists()[wishlistIndex].id) {
+            if (product.wishlistId == getWishlists()[index].id) {
                 selectedProducts.add(product)
             }
         }
@@ -62,17 +69,17 @@ class WishlistDetailsActivity : AppCompatActivity() {
         }
 
         tvName = findViewById(R.id.tvName)
-        tvName.text = getWishlists()[wishlistIndex].name
+        tvName.text = getWishlists()[index].name
         tvName.textSize = 20F
         tvName.setTextColor(Color.BLACK)
-        tvName.setBackgroundColor(getWishlists()[wishlistIndex].color)
+        tvName.setBackgroundColor(getWishlists()[index].color)
 
         tvTotalPrice = findViewById(R.id.tvTotalPrice)
-        tvTotalPrice.text = String.format("%.2f", calcTotal())
+        tvTotalPrice.text = String.format("%.2f", calcTotalPrice())
 
     }
 
-    private fun calcTotal():Double{
+    private fun calcTotalPrice():Double{
         var sum = 0.0
 
         for(product:Product in selectedProducts) sum += product.quantity * product.pricePerPiece
