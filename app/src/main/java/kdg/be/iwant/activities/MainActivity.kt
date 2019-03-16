@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(){
 
     @Override
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_default, menu)
+        menuInflater.inflate(R.menu.menu_settings, menu)
         return true
     }
 

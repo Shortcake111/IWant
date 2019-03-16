@@ -15,7 +15,11 @@ import kdg.be.iwant.getWishlists
 import kdg.be.iwant.model.Product
 import java.util.*
 
-class WishlistDetailsActivity : AppCompatActivity() {
+class WishlistDetailsActivity : AppCompatActivity(), WishlistDetailsFragment.OnFragmentInteractionListener {
+    override fun onFragmentInteraction(wishlistIndex: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     private lateinit var rvProducts: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -28,17 +32,17 @@ class WishlistDetailsActivity : AppCompatActivity() {
     private var index:Int = 0
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(kdg.be.iwant.R.menu.menu_default, menu)
+        menuInflater.inflate(kdg.be.iwant.R.menu.menu_settings, menu)
         return true
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_wishlist_details)
+        setContentView(R.layout.fragment_wishlist_details)
 
         val intent: Intent = intent
         val index:Int = intent.getIntExtra("index", 0)
-        val fragment:WishlistDetailsFragment = fragmentManager.findFragmentById(R.id.fWishlistDetails)
+        val fragment: WishlistDetailsFragment = fragmentManager.findFragmentById(R.id.fWishlistDetails) as WishlistDetailsFragment
         fragment.index = index
 
         if (savedInstanceState == null) {

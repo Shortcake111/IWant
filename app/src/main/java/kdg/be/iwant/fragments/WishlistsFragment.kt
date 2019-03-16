@@ -1,26 +1,23 @@
 package kdg.be.iwant.fragments
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.app.Fragment
-import android.support.v4.app.FragmentActivity
 import android.support.v4.app.ListFragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-
 import kdg.be.iwant.R
-import kdg.be.iwant.activities.WishlistsActivity
+
 import kdg.be.iwant.adapters.WishlistAdapter
 import kdg.be.iwant.getWishlists
-import kdg.be.iwant.model.Wishlist
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val KEY_INDEX = "index"
 
 /**
  * A simple [Fragment] subclass.
@@ -31,17 +28,15 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  *
  */
-class WishlistsFragment : ListFragment() {
+class WishlistsFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
+    private var index = 0
+    private lateinit var listener:WishlistAdapter.OnWishlistSelectedListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            index = it.getInt(KEY_INDEX)
         }
     }
 
@@ -49,31 +44,42 @@ class WishlistsFragment : ListFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        var adapter:WishlistAdapter = WishlistAdapter(getWishlists(), context)
-        listAdapter = adapter
-        return super.onCreateView(inflater, container, savedInstanceState)
+        val view = inflater.inflate(R.layout.fragment_wishlists, container, false)
 
-        //return inflater.inflate(R.layout.fragment_wishlists, container, false)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rvWishlists)
+        val layoutManager = LinearLayoutManager(this.activity)
+        recyclerView.setLayoutManager(layoutManager)
+
+        val adapter = WishlistAdapter(getWishlists())
+        recyclerView.setAdapter(adapter)
+        return view
     }
 
-    override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long) {
-        super.onListItemClick(l, v, position, id)
-        val activity: FragmentActivity? = activity
-        activity.onClickWishlists(position)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        listAdapter = WishlistAdapter<String>(
+            activity, android.R.layout.activity_list_item, getWishlists()
+        )
+    }
+
+    fun onWishlistSelected(l: ListView?, v: View?, position: Int, id: Long) {
+        super.onWishlistSelected(l, v, position, id)
+        val activity: WishlistsFragment? = activity
+        activity.onWishlistSelected(position)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
+    fun onWishlistSelected(index: Int) {
+        listener.onWishlistSelected(index)
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
-            listener = context
+            listener = onWishlistSelected(index)
         } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+            throw RuntimeException("$context must implement OnFragmentInteractionListener")
         }
     }
 
@@ -95,7 +101,7 @@ class WishlistsFragment : ListFragment() {
      */
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
+        fun onFragmentInteraction(wishlistId:Int)
     }
 
     companion object {
@@ -104,16 +110,14 @@ class WishlistsFragment : ListFragment() {
          * this fragment using the provided parameters.
          *
          * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
          * @return A new instance of fragment WishlistsFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(index: Int) =
             WishlistsFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putInt(KEY_INDEX, index)
                 }
             }
     }
