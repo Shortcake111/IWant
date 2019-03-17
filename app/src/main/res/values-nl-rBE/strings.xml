@@ -15,4 +15,7 @@
     <string name="bg">achtergrond afbeelding</string>
     <string name="euroSign">€</string>
     <string name="total">Totaal</string>
+    <string name="images">Afbeeldingen</string>
+    <string name="wishlists">Verlanglijsten</string>
+    <string name="random">Willekeurig</string>
 </resources>

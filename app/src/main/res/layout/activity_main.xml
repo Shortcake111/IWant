@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.MainActivity">
-    <ImageView
+    <!--<ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:id="@+id/iconImageView"
@@ -71,5 +71,5 @@
             android:id="@+id/idTextView" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/createdTextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>-->
 </android.support.constraint.ConstraintLayout>
