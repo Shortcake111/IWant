@@ -14,7 +14,7 @@ import kdg.be.iwant.fragments.WishlistDetailsFragment
 import kdg.be.iwant.fragments.WishlistsFragment
 import kdg.be.iwant.getWishlists
 
-class WishlistsActivity : AppCompatActivity(), WishlistsFragment.OnFragmentInteractionListener  {
+class WishlistsActivity : AppCompatActivity(),WishlistAdapter.OnWishlistSelectedListener , WishlistsFragment.OnFragmentInteractionListener  {
     override fun onFragmentInteraction(wishlistId: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -31,7 +31,8 @@ class WishlistsActivity : AppCompatActivity(), WishlistsFragment.OnFragmentInter
         return true
     }
 
-    fun onWishlistSelected(index: Int) {
+    //FIXME check
+    override fun onWishlistSelected(index: Int) {
         /*val wishlist:Intent = Intent(this, WishlistDetailsActivity::class.java)
         wishlistIntent.putExtra("Index", index)
         startActivity(wishlistIntent)*/

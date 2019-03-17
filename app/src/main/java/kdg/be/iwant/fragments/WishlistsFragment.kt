@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import kdg.be.iwant.R
+import kdg.be.iwant.activities.WishlistsActivity
 
 import kdg.be.iwant.adapters.WishlistAdapter
 import kdg.be.iwant.getWishlists
@@ -28,10 +29,10 @@ private const val KEY_INDEX = "index"
  * create an instance of this fragment.
  *
  */
-class WishlistsFragment : Fragment() {
+class WishlistsFragment() : Fragment() {
     // TODO: Rename and change types of parameters
     private var index = 0
-    private lateinit var listener:WishlistAdapter.OnWishlistSelectedListener
+    private lateinit var listener: WishlistAdapter.OnWishlistSelectedListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,31 +45,29 @@ class WishlistsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(R.layout.fragment_wishlists, container, false)
-
+        //get recyclerView
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvWishlists)
-        val layoutManager = LinearLayoutManager(this.activity)
-        recyclerView.setLayoutManager(layoutManager)
-
-        val adapter = WishlistAdapter(getWishlists())
-        recyclerView.setAdapter(adapter)
+        //set layoutManager
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        //create adapter
+        //FIXME check
+        val adapter = WishlistAdapter(getWishlists(), activity, listener)
+        //set adapter
+        recyclerView.adapter = adapter
         return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        listAdapter = WishlistAdapter<String>(
-            activity, android.R.layout.activity_list_item, getWishlists()
-        )
-    }
-
+    /*FIXME check
     fun onWishlistSelected(l: ListView?, v: View?, position: Int, id: Long) {
         super.onWishlistSelected(l, v, position, id)
         val activity: WishlistsFragment? = activity
         activity.onWishlistSelected(position)
     }
+         */
 
+    //FIXME check
     // TODO: Rename method, update argument and hook method into UI event
     fun onWishlistSelected(index: Int) {
         listener.onWishlistSelected(index)
@@ -77,7 +76,7 @@ class WishlistsFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
-            listener = onWishlistSelected(index)
+            listener = context as WishlistsActivity
         } else {
             throw RuntimeException("$context must implement OnFragmentInteractionListener")
         }
@@ -101,7 +100,7 @@ class WishlistsFragment : Fragment() {
      */
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onFragmentInteraction(wishlistId:Int)
+        fun onFragmentInteraction(wishlistId: Int)
     }
 
     companion object {

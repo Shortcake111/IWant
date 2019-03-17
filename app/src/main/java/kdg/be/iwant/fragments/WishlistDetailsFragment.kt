@@ -14,6 +14,7 @@ import kdg.be.iwant.adapters.ProductAdapter
 import kdg.be.iwant.adapters.WishlistAdapter
 import kdg.be.iwant.getProducts
 import kdg.be.iwant.getWishlists
+import kdg.be.iwant.model.Wishlist
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,13 +31,14 @@ private const val KEY_INDEX = "index"
  */
 class WishlistDetailsFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    var index: Int = 0
+    private var item: Wishlist? = null
     private lateinit var listener: ProductAdapter.OnProductSelectedListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            index = it.getInt("index")
+            if(it.containsKey(ARG_ITEM_ID))
+            item = getWishlists()[it.getInt("index")]
         }
     }
 
@@ -100,6 +102,8 @@ class WishlistDetailsFragment : Fragment() {
          * @param param1 Parameter 1.
          * @return A new instance of fragment WishlistDetailsFragment.
          */
+        const val ARG_ITEM_ID = "index"
+
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(index: Int):WishlistDetailsFragment {
