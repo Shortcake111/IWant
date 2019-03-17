@@ -11,9 +11,6 @@ import kdg.be.iwant.model.Product
 import kotlinx.android.synthetic.main.activity_product_item.view.*
 import java.util.ArrayList
 
-
-
-
 class ProductAdapter(
     private val productsArray: ArrayList<Product>)
     : RecyclerView.Adapter<ProductAdapter.ProductHolder>() {
