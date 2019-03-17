@@ -1,9 +1,8 @@
-package kdg.be.iwant.activities
+package kdg.be.iwant
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import kdg.be.iwant.R
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var profile:ImageView
@@ -18,7 +17,7 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun initialiseViews(){
         profile = findViewById(R.id.profileImageView)
-        profile.setImageDrawable(getDrawable(R.drawable.profilepic))
+        profile.setImageDrawable(resources.getDrawable(R.drawable.profilepic))
     }
 
     private fun addEventHandlers(){

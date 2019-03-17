@@ -9,20 +9,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import kdg.be.iwant.R
 import kdg.be.iwant.model.Wishlist
 import kotlinx.android.synthetic.main.activity_wishlist_item.view.*
+import org.w3c.dom.Text
 import java.util.*
+
 
 class WishlistAdapter(
     private val wishlistsArray:ArrayList<Wishlist>,
     private val context: Context?,
     private val listener: OnWishlistSelectedListener)
     :RecyclerView.Adapter<WishlistAdapter.WishlistHolder>() {
-    private val pdt:SimpleTimeZone = SimpleTimeZone(-8 * 60 * 60 * 1000, TimeZone.getAvailableIDs(-8 * 60 * 60 * 1000)[0])
 
     override fun onCreateViewHolder(parent: ViewGroup, index: Int): WishlistHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(kdg.be.iwant.R.layout.activity_wishlist_item, parent, false)
+        val view = inflater.inflate(R.layout.activity_wishlist_item, parent, false)
         return WishlistHolder(view)
     }
 
@@ -37,11 +39,7 @@ class WishlistAdapter(
         holder.name.text = wishlist.name
         holder.name.setTextColor(Color.BLACK)
         holder.name.textSize = 25F
-
-        pdt.setStartRule(Calendar.APRIL, 1, Calendar.SUNDAY, 2 * 60 * 60 * 1000)
-        pdt.setEndRule(Calendar.OCTOBER, -1, Calendar.SUNDAY, 2 * 60 * 60 * 1000)
-
-        val cal:Calendar = GregorianCalendar(pdt)
+        val cal:Calendar = GregorianCalendar()
         cal.timeInMillis = wishlist.last_edited.time
         //cal.set(wishlist.last_edited.year, wishlist.last_edited.month, wishlist.last_edited.day)
 
@@ -68,25 +66,18 @@ class WishlistAdapter(
     }
 
     private fun dateToString(text:String, year:Int, month:Int, day:Int):String{
-        var monthString = ""
+        var monthString:String = ""
         if ((month+1).toString().length < 2){
             monthString = "0"
         }
         monthString += (month+1)
 
-        var dayString = ""
+        var dayString:String = ""
         if(day.toString().length < 2){
             dayString = "0"
         }
         dayString += day
-
-        val today = GregorianCalendar(pdt)
-        return if (year.equals(today.get(Calendar.YEAR).toString())) {
-            String.format("%s: %2s-%2s", text, monthString, dayString)
-        } else{
-            val yearString:String = year.toString()
-            String.format("%s: %2s-%2s-%2s", text, yearString.substring(yearString.length-2, yearString.length), monthString, dayString)
-        }
+        return String.format("%s: %4s-%2s-%2s", text, year, monthString, dayString)
     }
 }
 

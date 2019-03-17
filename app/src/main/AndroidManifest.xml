@@ -10,18 +10,18 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat">
-        <activity android:name=".activities.WishlistsActivity">
+        <activity android:name=".WishlistsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SettingsActivity">
+        <activity android:name=".SettingsActivity">
         </activity>
-        <activity android:name=".activities.WishlistDetailsActivity">
+        <activity android:name=".WishlistActivity">
         </activity>
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".MainActivity">
 
         </activity>
     </application>

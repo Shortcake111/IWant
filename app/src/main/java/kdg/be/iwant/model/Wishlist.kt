@@ -1,5 +1,6 @@
 package kdg.be.iwant.model
 
+import java.time.LocalDate
 import java.util.*
 
 data class Wishlist (
